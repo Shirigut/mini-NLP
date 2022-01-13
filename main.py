@@ -47,6 +47,9 @@ def create_words_hashmap():
 
     return words
 
+##want to extract the psukim that we taged from the xml in order to create our verctors
+def create_psukim_set():
+    print("hi")
 
 if __name__ == '__main__':
     words_hashmap = create_words_hashmap()
