@@ -17,35 +17,42 @@ def parse_xml(file_name, words, counter):
                     counter += 1
     return words, counter
 
-
-
-if __name__ == '__main__':
+def create_words_hashmap():
     words = {}
     counter = 0
 
-    for path in pathlib.Path("Torah").iterdir(): ##torah
+    for path in pathlib.Path("Torah").iterdir():  ##torah
         if path.is_file():
             words_new, counter_new = parse_xml(path, words, counter)
             words = words_new
             counter = counter_new
 
-    for path in pathlib.Path("Prophets").iterdir(): ##neviim
+    for path in pathlib.Path("Prophets").iterdir():  ##neviim
         if path.is_file():
             words_new, counter_new = parse_xml(path, words, counter)
             words = words_new
             counter = counter_new
 
-    for path in pathlib.Path("Writings").iterdir(): ##ktuvim
+    for path in pathlib.Path("Writings").iterdir():  ##ktuvim
         if path.is_file():
             words_new, counter_new = parse_xml(path, words, counter)
             words = words_new
             counter = counter_new
 
-    f = open('bible_words.csv', 'w', encoding="utf8") ##writing to csv file
+    f = open('bible_words.csv', 'w', encoding="utf8")  ##writing to csv file
     writer = csv.writer(f)
     for key, value in words.items():
         writer.writerow([key, value])
     f.close()
+
+    return words
+
+
+if __name__ == '__main__':
+    words_hashmap = create_words_hashmap()
+
+
+
 
 
 
